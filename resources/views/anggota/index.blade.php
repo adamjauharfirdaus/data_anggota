@@ -12,6 +12,7 @@
         <th>Jurusan</th>
         <th>Semester</th>
         <th>Asal Kota</th>
+        <th>Aksi</th>
     </tr>
 
     @foreach ($anggota as $no=>$data)
@@ -22,6 +23,13 @@
             <td>{{ $data->jurusan }}</td>
             <td>{{ $data->semester }}</td>
             <td>{{ $data->asal_kota }}</td>
+            <td class="d-flex gap-2">
+                <a class="btn btn-warning" href="{{ route('anggota.edit', $data->id) }}">Edit</a>
+                <form action="{{ route('anggota.delete', $data->id) }}" method="post">
+                @csrf
+                    <button class="btn btn-danger">Hapus</button>
+                </form>
+            </td>
         </tr>
 
     @endforeach
@@ -29,6 +37,8 @@
 
 <div class="text-end">
     <a class="btn btn-success" href="{{ route('anggota.add') }}">Tambah Anggota</a>
+
+
 </div>
 
 @endsection
